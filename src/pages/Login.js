@@ -111,6 +111,12 @@ function Login() {
                 setPassword(e.target.value);
               }}
             />
+            <div className="input__box"  style={{"margin-top":"3px",cursor: "pointer",paddingLeft:"10px"}} onClick={togglePassword}>
+                <input type="checkbox" onChange={(e)=>{
+                  togglePassword()
+                }}/>
+                <label for="showpassword"><small>Show Password</small></label>
+            </div>
              <p style={{ color: "red" }}>{pmsg}</p>
           </div>
 

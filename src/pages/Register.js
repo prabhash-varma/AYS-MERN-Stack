@@ -135,7 +135,7 @@ function Register() {
             Register as Professional
           </h1>
           
-          <form onSubmit={submitHandler}>
+          <form action="/empsignup" enctype="multipart/form-data" method="POST">
             <div className="container">
               <div style={{ display: "flex", justifyContent: "center" }}>
                 <div style={{ "margin-right": "10px" }} class="mb-3">
@@ -395,25 +395,17 @@ function Register() {
                   />
                   <p style={{ color: "red" }}>{passwordMsg}</p>
                 </div>
-                {/* <div style={{ "margin-left": "10px" }} class="mb-3">
+                <div style={{ "margin-left": "10px" }} class="mb-3">
                   <label style={{display: "flex",flexDirection:"row",justifyContent:"center",marginBottom:"0px"}}  for="exampleInputEmail1" class="form-label">
-                    Confirm password<p style={{color:"red"}}>*</p>
+                    Resume<p style={{color:"red"}}>*</p>
                   </label>
-                  <input
-                    type="password"
-                    value={user.city}
-                    name="city"
-                    class="form-control"
-                    id="exampleInputEmail1"
-                    aria-describedby="emailHelp"
-                    placeholder="******"
-                    onChange={(e) => {
-                      setCityMsg("");
-                      handleInputs(e);
-                    }}
-                  />
+
+                  {/* <span>Upload CV:</span>   */}
+                  <input type="file" name="mypic" required/>
+                  {/* <input type="submit" value="Upload"/> */}
+                 
                   <p style={{ color: "red" }}>{cityMsg}</p>
-                </div> */}
+                </div>
               </div>
 
 

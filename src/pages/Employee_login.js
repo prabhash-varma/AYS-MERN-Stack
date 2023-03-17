@@ -124,6 +124,13 @@ function Employee_login() {
                */}
           {/* </div> */}
 
+          <div className="input__box"  style={{"margin-top":"3px",cursor: "pointer",paddingLeft:"10px"}} onClick={togglePassword}>
+                <input type="checkbox" onChange={(e)=>{
+                  togglePassword()
+                }}/>
+                <label for="showpassword"><small>Show Password</small></label>
+            </div>
+
   
           <div className="input__box">
             <button type="submit" className="button_l">
