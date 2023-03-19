@@ -31,6 +31,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import LoginButton from './accounttype';
 import EmpProfile from "./pages/Empprofile";
+import CheckOTP from "./pages/CheckOTP";
 export const store = createContext();
 
 function App() {
@@ -40,11 +41,14 @@ function App() {
   const [userdetails, setUserDetails] = useState({ email: "", password: "" });
   // const [empdetails, setempDetails] = useState({ email: "", password: "" });
   const [empdetails, setempDetails] = useState({});
+  const [otpdetails, setOtpDetails] = useState({});
 
   return (
     <div className="App">
       <store.Provider
         value={{
+          otpdetails,
+          setOtpDetails,
           cartItems,
           setCartItems,
           userdetails,
@@ -94,6 +98,7 @@ function App() {
             <Route path="/ays/settings" element={<Settings />} />
             <Route path="/mainLogon" element={<LoginButton/>}/>
             <Route path="/empProfile" element={<EmpProfile/>}/>
+            <Route path="/checkOTP" element={<CheckOTP/>}/>
             <Route path="*" element={<PageNotFound />} />
           </Routes>
         </BrowserRouter>

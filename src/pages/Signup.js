@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import MainNav from "../components/MainNav";
 import Builder from "./Images/builder.png";
@@ -6,9 +6,11 @@ import "./css/Signup.css";
 import Axios from "axios";
 import HomeNav from "../components/HomeNav";
 import {toast} from "react-toastify"
+import {store}from "../App.js" 
 
 function Signup() {
   const navigate = useNavigate();
+  const {otpdetails,setOtpDetails}=useContext(store);
   const [user, setUser] = useState({
     firstName: "",
     lastName: "",
@@ -71,35 +73,44 @@ function Signup() {
     } else if (confirmPassword === "" || confirmPassword !== password) {
       setConfirmPasswordMsg("Password doesn't match!");
     } else {
-      Axios.get(`http://localhost:3001/checkemail?email=${email}`).then((res) => {
-        if (res.data.length === 0) {
-          var id = Math.floor(Math.random() * 10000000000000);
 
-          Axios.post(`http://localhost:3001/signup`, {
-            id,
-            firstName,
-            lastName,
-            email,
-            phone,
-            address,
-            city,
-            state,
-            pincode,
-            password,
-          }).then((res) => {
-            console.log(res);
-            if (res.data) {
-              alert("Registration successful!");
-              navigate("/login");
-            } else {
-              alert("Something went wrong");
-            }
-          });
-        } else {
-          //setEmailMsg("Email already exists!");
-          toast.error("Email already exists!",{position: toast.POSITION.BOTTOM_RIGHT})
-        }
-      });
+      setOtpDetails(user);
+
+      console.log(otpdetails);
+
+      navigate("/checkotp");
+
+
+
+      // Axios.get(`http://localhost:3001/checkemail?email=${email}`).then((res) => {
+      //   if (res.data.length === 0) {
+      //     var id = Math.floor(Math.random() * 10000000000000);
+
+      //     Axios.post(`http://localhost:3001/signup`, {
+      //       id,
+      //       firstName,
+      //       lastName,
+      //       email,
+      //       phone,
+      //       address,
+      //       city,
+      //       state,
+      //       pincode,
+      //       password,
+      //     }).then((res) => {
+      //       console.log(res);
+      //       if (res.data) {
+      //         alert("Registration successful!");
+      //         navigate("/login");
+      //       } else {
+      //         alert("Something went wrong");
+      //       }
+      //     });
+      //   } else {
+      //     //setEmailMsg("Email already exists!");
+      //     toast.error("Email already exists!",{position: toast.POSITION.BOTTOM_RIGHT})
+      //   }
+      // });
     }
   };
 
