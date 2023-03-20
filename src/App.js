@@ -1,5 +1,5 @@
 //App
-import React, { useContext, createContext, useState } from "react";
+import React, { useContext, createContext, useState, useEffect } from "react";
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Main from "./pages/Main";
@@ -32,7 +32,15 @@ import "react-toastify/dist/ReactToastify.css";
 import LoginButton from './accounttype';
 import EmpProfile from "./pages/Empprofile";
 import CheckOTP from "./pages/CheckOTP";
+import ProtectedRoute from "./ProtectedRoute";
+import EmpProtectedRoute from "./EmpProtectedRoute";
+import OtpProtectedRoute from "./OtpProtectedRoute";
+
 export const store = createContext();
+
+
+
+
 
 function App() {
   const [cartItems, setCartItems] = useState([]);
@@ -42,6 +50,11 @@ function App() {
   // const [empdetails, setempDetails] = useState({ email: "", password: "" });
   const [empdetails, setempDetails] = useState({});
   const [otpdetails, setOtpDetails] = useState({});
+  
+
+
+  
+
 
   return (
     <div className="App">
@@ -63,42 +76,43 @@ function App() {
       >
         <BrowserRouter>
           <Routes>
+          
             <Route path="/" element={<Main />} />
             <Route path="/register" element={<Register />} />
             <Route path="/login_employee" element={<Employee_login />} />
-            <Route path="/Employee_home" element={<Employee_home />} />
-            <Route path="/work" element={<Work/>} />
+            <Route path="/Employee_home" element={<EmpProtectedRoute Component={Employee_home} />} />
+            <Route path="/work" element={<EmpProtectedRoute Component={Work} />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
-            <Route path="/ays/home" element={<Home />} />
-            <Route path="/ays/about" element={<About />} />
-            <Route path="/ays/contactus" element={<Contactus />} />
-            <Route path="/ays/services/salon" element={<Salon />} />
+            <Route path="/ays/home" element={<ProtectedRoute Component={Home} />} />
+            <Route path="/ays/about" element={<ProtectedRoute Component={About} />} />
+            <Route path="/ays/contactus" element={<ProtectedRoute Component={Contactus} />} />
+            <Route path="/ays/services/salon" element={<ProtectedRoute Component={Salon} />} />
             <Route
               path="/ays/services/homecleaning"
-              element={<HomeCleaning />}
+              element={<ProtectedRoute Component={HomeCleaning} />}
             />
             <Route
               path="/ays/services/packersandmovers"
-              element={<PackersAndMovers />}
+              element={<ProtectedRoute Component={PackersAndMovers} />}
             />
-            <Route path="/ays/services/appliances" element={<Appliances />} />
-            <Route path="/ays/services/pestcontrol" element={<PestControl />} />
-            <Route path="/ays/services/painting" element={<Painting />} />
-            <Route path="/ays/services/plumbing" element={<Plumbing />} />
+            <Route path="/ays/services/appliances" element={<ProtectedRoute Component={Appliances} />} />
+            <Route path="/ays/services/pestcontrol" element={<ProtectedRoute Component={PestControl} />} />
+            <Route path="/ays/services/painting" element={<ProtectedRoute Component={Painting} />} />
+            <Route path="/ays/services/plumbing" element={<ProtectedRoute Component={Plumbing} />} />
             <Route
               path="/ays/services/construction"
-              element={<Construction />}
+              element={<ProtectedRoute Component={Construction} />}
             />
-            <Route path="/ays/cart" element={<Cart />} />
-            <Route path="/ays/profile" element={<Profile />} />
-            <Route path="/ays/orders" element={<Orders />} />
-            <Route path="/ays/orders/:orderid" element={<OrderDetails />} />
-            <Route path="/ays/requests/:requestid" element={<RequestsDetails />} />
-            <Route path="/ays/settings" element={<Settings />} />
+            <Route path="/ays/cart" element={<ProtectedRoute Component={Cart} />} />
+            <Route path="/ays/profile" element={<ProtectedRoute Component={Profile} />} />
+            <Route path="/ays/orders" element={<ProtectedRoute Component={Orders} />} />
+            <Route path="/ays/orders/:orderid" element={<ProtectedRoute Component={OrderDetails} />} />
+            <Route path="/ays/requests/:requestid" element={<ProtectedRoute Component={RequestsDetails} />} />
+            <Route path="/ays/settings" element={<ProtectedRoute Component={Settings} />} />
             <Route path="/mainLogon" element={<LoginButton/>}/>
-            <Route path="/empProfile" element={<EmpProfile/>}/>
-            <Route path="/checkOTP" element={<CheckOTP/>}/>
+            <Route path="/empProfile" element={<EmpProtectedRoute Component={EmpProfile} />}/>
+            <Route path="/checkOTP" element={<OtpProtectedRoute Component={CheckOTP}/>}/>
             <Route path="*" element={<PageNotFound />} />
           </Routes>
         </BrowserRouter>

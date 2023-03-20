@@ -3,7 +3,7 @@ import HomeNav from "../components/HomeNav.js";
 import ProfileComp from "../components/ProfileComp.js";
 import {store} from '../App.js'
 import Axios from 'axios'
-
+import withRouter from "../withRouter.js";
 
 
 function Profile() {
@@ -35,4 +35,4 @@ function Profile() {
   );
 }
 
-export default Profile;
+export default withRouter(Profile);
