@@ -18,10 +18,16 @@ function Orders() {
   const navigate = useNavigate();
 
   const getorderdetails = async () => {
-    const res = await Axios.get(
-      `http://localhost:3001/ordersbyuser?uemail=${userdetails.email}`
-    );
-    setorderitems(res.data);
+    Axios.get(`http://localhost:3001/ordersbyuser?uemail=${userdetails.email}`,{headers:{"x-access-token":localStorage.getItem("token")}}).then((res)=>{
+
+        if(res.data.auth==true){
+          setorderitems(res.data.orders);
+        }
+        else{
+          console.log("error in orders.js");
+        }
+
+    })
     setOrderslist([]);
     orderitems.map((item) => {
       setOrderslist((prevlist) => {

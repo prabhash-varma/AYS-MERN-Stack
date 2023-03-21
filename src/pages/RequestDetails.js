@@ -86,8 +86,8 @@ function RequestDetails() {
                   
                       <button  class="btn btn-outline-success"type="submit" onClick={async (e) => {e.preventDefault();
                       console.log(item._id);
-                      const res = await Axios.post(`http://localhost:3001/updateorder`,{orderid :item._id,cost: amount, status: 1});
-                     const res1 = await Axios.post(`http://localhost:3001/updateemployeebyemail`,{email:item.eemail,free:1},)
+                      const res = await Axios.post(`http://localhost:3001/updateorder`,{orderid :item._id,cost: amount, status: 1},{headers:{"x-access-token":localStorage.getItem("token")}});
+                     const res1 = await Axios.post(`http://localhost:3001/updateemployeebyemail`,{email:item.eemail,free:1},{headers:{"x-access-token":localStorage.getItem("token")}})
                           .then(() =>{navigate("/Employee_home");});}} >
                         Post
                       </button>

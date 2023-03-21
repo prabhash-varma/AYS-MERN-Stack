@@ -108,7 +108,7 @@ function App() {
             <Route path="/ays/profile" element={<ProtectedRoute Component={Profile} />} />
             <Route path="/ays/orders" element={<ProtectedRoute Component={Orders} />} />
             <Route path="/ays/orders/:orderid" element={<ProtectedRoute Component={OrderDetails} />} />
-            <Route path="/ays/requests/:requestid" element={<ProtectedRoute Component={RequestsDetails} />} />
+            <Route path="/ays/requests/:requestid" element={<EmpProtectedRoute Component={RequestsDetails} />} />
             <Route path="/ays/settings" element={<ProtectedRoute Component={Settings} />} />
             <Route path="/mainLogon" element={<LoginButton/>}/>
             <Route path="/empProfile" element={<EmpProtectedRoute Component={EmpProfile} />}/>

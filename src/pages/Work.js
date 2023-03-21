@@ -14,16 +14,21 @@ function Work() {
      
   const getorderdetails = async () => {
     // const res = await Axios.get(`http://localhost:3001/orders?eemail=${empdetails.email}`);
-    const res = await Axios.get(`http://localhost:3001/getorders?eemail=${empdetails.email}`);
+    const res = await Axios.get(`http://localhost:3001/getorders?eemail=${empdetails.email}`,{headers:{"x-access-token":localStorage.getItem("token")}});
+
+    if(res.data.auth){
     console.log("details of orderws",res.data)
-      setOrderItems(res.data);
+      setOrderItems(res.data.orders);
       setRequestslist([]);
-      setRequestslist(res.data);
+      setRequestslist(res.data.orders);
       // orderitems.map((item) => {
       //   setRequestslist((prevlist) => {
       //     return [...prevlist, item];
       //   });
       // });
+
+      console.log("orderitems:",orderitems);
+    }
    };
 
   // const submithandler = async (e) => {

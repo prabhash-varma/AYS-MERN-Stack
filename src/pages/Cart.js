@@ -81,15 +81,15 @@ function Cart() {
       for(var i =0;i< cartItems.length;i++)
       {
          const item = cartItems[i]
-         const res = await Axios.get(`http://localhost:3001/findemployee?profession=${item.type}&free=1`)
-         const emp = res.data[0]  
-        if(res.data.length >0)
+         const res = await Axios.get(`http://localhost:3001/findemployee?profession=${item.type}&free=1`,{headers:{"x-access-token":localStorage.getItem("token")}})
+         const emp = res.data.employees[0]  
+        if(res.data.auth)
         {
-          await Axios.post(`http://localhost:3001/updateemployee`, {...emp,free:0})        
-          await Axios.post(`http://localhost:3001/orders`, {status:0,iname:item.name,iimg:item.img,itype:item.type,ufname:userdetails.firstName,ulname:userdetails.lastName,uemail:userdetails.email,uphone:userdetails.phone,eid:emp.id,efname:emp.firstName,elname:emp.lastName,eemail:emp.email,ephone:emp.phone,eprofession:emp.eprofession,ord_name:orderItems.add_name,ord_email:orderItems.add_email,ord_phone:orderItems.add_phone,ord_address1:orderItems.add_address1,ord_address2:orderItems.add_address2,ord_state:orderItems.add_state,ord_pincode:orderItems.add_pincode,ord_date:orderItems.add_date})
+          await Axios.post(`http://localhost:3001/updateemployee`, {...emp,free:0},{headers:{"x-access-token":localStorage.getItem("token")}})        
+          await Axios.post(`http://localhost:3001/orders`, {status:0,iname:item.name,iimg:item.img,itype:item.type,ufname:userdetails.firstName,ulname:userdetails.lastName,uemail:userdetails.email,uphone:userdetails.phone,eid:emp.id,efname:emp.firstName,elname:emp.lastName,eemail:emp.email,ephone:emp.phone,eprofession:emp.eprofession,ord_name:orderItems.add_name,ord_email:orderItems.add_email,ord_phone:orderItems.add_phone,ord_address1:orderItems.add_address1,ord_address2:orderItems.add_address2,ord_state:orderItems.add_state,ord_pincode:orderItems.add_pincode,ord_date:orderItems.add_date},{headers:{"x-access-token":localStorage.getItem("token")}})
         }
         else{
-        await Axios.post(`http://localhost:3001/orders`, {status:0,iname:item.name,iimg:item.img,itype:item.type,ufname:userdetails.firstName,ulname:userdetails.lastName,uemail:userdetails.email,uphone:userdetails.phone,eemail:"",ord_name:orderItems.add_name,ord_email:orderItems.add_email,ord_phone:orderItems.add_phone,ord_address1:orderItems.add_address1,ord_address2:orderItems.add_address2,ord_state:orderItems.add_state,ord_pincode:orderItems.add_pincode,ord_date:orderItems.add_date})
+        await Axios.post(`http://localhost:3001/orders`, {status:0,iname:item.name,iimg:item.img,itype:item.type,ufname:userdetails.firstName,ulname:userdetails.lastName,uemail:userdetails.email,uphone:userdetails.phone,eemail:"",ord_name:orderItems.add_name,ord_email:orderItems.add_email,ord_phone:orderItems.add_phone,ord_address1:orderItems.add_address1,ord_address2:orderItems.add_address2,ord_state:orderItems.add_state,ord_pincode:orderItems.add_pincode,ord_date:orderItems.add_date},{headers:{"x-access-token":localStorage.getItem("token")}})
       }
       }
     }

@@ -11,20 +11,26 @@ function Work() {
   const navigate = useNavigate();
 
   const getorderdetails = async () => {
-    const res = await Axios.get(
-      `http://localhost:3001/ordersbyemp?eemail=${empdetails.email}`
-    );
-    if (res.data.length > 0) setOrderItems(res.data[0]);
+   Axios.get(`http://localhost:3001/ordersbyemp?eemail=${empdetails.email}`,{headers:{"x-access-token":localStorage.getItem("token")}}).then((res)=>{
+      
+      if(res.data.auth==true){
+        setOrderItems(res.data.orders[0]);
+      }
+      else{
+        console.log("error in employeeee.js");
+      }
+   })
+   
   };
 
   const submithandler = async (e) => {
     e.preventDefault();
     const res = await Axios.post(
-      `http://localhost:3001/updateorder`,{orderid :orderitems._id,cost: amount, status: 1}
+      `http://localhost:3001/updateorder`,{orderid :orderitems._id,cost: amount, status: 1},{headers:{"x-access-token":localStorage.getItem("token")}}
 
     );
     const res1 = await Axios.post(
-      `http://localhost:3001/updateemployeebyemail`,{email:orderitems.eemail,free:1},
+      `http://localhost:3001/updateemployeebyemail`,{email:orderitems.eemail,free:1},{headers:{"x-access-token":localStorage.getItem("token")}}
     );
     navigate("/Employee_home");
   };

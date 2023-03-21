@@ -47,18 +47,19 @@ function Employee_login() {
         `http://localhost:3001/emplogin?email=${email}&password=${password}`
       ).then((res) => {
         console.log("emp details is :",res.data)
-        if (res.data.length > 0) {
-          setempDetails(res.data[0])
+        if (res.data.auth === true) {
+          localStorage.setItem("token", res.data.token);
+          setempDetails(res.data.employees[0])
           dispatch(login({
-            email:res.data[0].email,
-            firstName:res.data[0].firstName,
-            lastName:res.data[0].lastName,
-            phone:res.data[0].phone,
-            address:res.data[0].address,
-            city:res.data[0].city,
-            state:res.data[0].state,
-            pincode:res.data[0].pincode,
-            id:res.data[0].id
+            email:res.data.employees[0].email,
+            firstName:res.data.employees[0].firstName,
+            lastName:res.data.employees[0].lastName,
+            phone:res.data.employees[0].phone,
+            address:res.data.employees[0].address,
+            city:res.data.employees[0].city,
+            state:res.data.employees[0].state,
+            pincode:res.data.employees[0].pincode,
+            id:res.data.employees[0]._id.valueOf()
           }))
           alert("Login successful!");
           navigate("/Employee_home");

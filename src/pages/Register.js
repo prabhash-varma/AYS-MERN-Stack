@@ -11,7 +11,7 @@ function Register() {
   const [user, setUser] = useState({
     firstName: "",
     lastName: "",
-    gender:"",
+    gender:"Male",
     profession:"",
     email: "",
     phone: "",
@@ -41,6 +41,7 @@ function Register() {
   };
 
   const submitHandler = (e) => {
+    console.log("submit handler called")
     e.preventDefault();
     console.log(user);
     const {
@@ -96,7 +97,7 @@ function Register() {
       console.log("Password must be atleast 6 characters!");
     }
    else {
-          console.log("user",user)
+          console.log("Employee entered data:",user)
           Axios.post(`http://localhost:3001/empsignup`, {
             firstName,
             lastName,
@@ -111,10 +112,16 @@ function Register() {
             password,
             free:"1"
           }).then((res) => {
-            console.log(res);
+            console.log(res.data);
+            if(res.data!=null){
               alert("We received your details. We will contact you soon!");
               setUser({firstName:"",lastName:"",gender:"",profession:"",email:"",phone:"",address:"",city:"",state:"",pincode:"",password:""});
               navigate("/");
+            }
+            else{
+              alert("Something went wrong! or Email already exists!");
+            }
+              
           });
         } 
   }
@@ -135,7 +142,7 @@ function Register() {
             Register as Professional
           </h1>
           
-          <form action="/empsignup" enctype="multipart/form-data" method="POST">
+          <form onSubmit={submitHandler}>
             <div className="container">
               <div style={{ display: "flex", justifyContent: "center" }}>
                 <div style={{ "margin-right": "10px" }} class="mb-3">
@@ -395,17 +402,7 @@ function Register() {
                   />
                   <p style={{ color: "red" }}>{passwordMsg}</p>
                 </div>
-                <div style={{ "margin-left": "10px" }} class="mb-3">
-                  <label style={{display: "flex",flexDirection:"row",justifyContent:"center",marginBottom:"0px"}}  for="exampleInputEmail1" class="form-label">
-                    Resume<p style={{color:"red"}}>*</p>
-                  </label>
-
-                  {/* <span>Upload CV:</span>   */}
-                  <input type="file" name="mypic" required/>
-                  {/* <input type="submit" value="Upload"/> */}
-                 
-                  <p style={{ color: "red" }}>{cityMsg}</p>
-                </div>
+                
               </div>
 
 

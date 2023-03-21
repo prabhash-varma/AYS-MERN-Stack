@@ -29,9 +29,16 @@ function Contactus() {
       toast.error("Message is required",{position: toast.POSITION.BOTTOM_RIGHT})
     }
     else{
-    Axios.post("http://localhost:3001/messages",{...message}).then((res)=>{
+    Axios.post("http://localhost:3001/messages",{...message},{headers:{"x-access-token":localStorage.getItem("token")}}).then((res)=>{
       console.log(res.data);
-      toast.success("Message sent successfully",{position: toast.POSITION.BOTTOM_RIGHT})
+      if(res.data.auth){
+        toast.success("Message sent successfully",{position: toast.POSITION.BOTTOM_RIGHT})
+      }
+      else{
+        toast.error("Error sending message",{position: toast.POSITION.BOTTOM_RIGHT})
+      }
+
+     
     }).then((res)=>{
       setMessage({name:"",email:"",message:""})
     }).catch((err)=>{

@@ -102,10 +102,16 @@ function Settings() {
         state: obj.state,
         pincode: obj.pincode,
         imgurl:imageurl,
-      })
+      },{headers:{"x-access-token":localStorage.getItem("token")}})
         .then((res) => {
-          toast.success("Profile updated successfully!",{position: toast.POSITION.BOTTOM_RIGHT});
-          console.log(userdetails);
+
+          if(res.data.auth){
+            toast.success("Profile updated successfully!",{position: toast.POSITION.BOTTOM_RIGHT});
+            console.log(res.data.doc);
+          }
+          else{
+            toast.error("Error updating profile!",{position: toast.POSITION.BOTTOM_RIGHT});
+          }
         })
         .catch((err) => {
           alert("Error updating profile!");

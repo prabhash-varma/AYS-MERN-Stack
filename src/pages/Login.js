@@ -52,8 +52,9 @@ function Login() {
       ).then((res) => {
         console.log(res.data);
 
-        if (res.data.length > 0) {
-          setUserDetails(res.data[0])
+        if (res.data.auth === true) {
+          localStorage.setItem("token", res.data.token);
+          setUserDetails(res.data.users[0])
           alert("Login successful!");
           navigate("/ays/home");
         } else {
