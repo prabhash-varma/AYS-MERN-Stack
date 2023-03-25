@@ -35,12 +35,10 @@ import CheckOTP from "./pages/CheckOTP";
 import ProtectedRoute from "./ProtectedRoute";
 import EmpProtectedRoute from "./EmpProtectedRoute";
 import OtpProtectedRoute from "./OtpProtectedRoute";
+import OtpProtectedRoute_emp from "./OtpProtectedRoute_emp";
+import CheckOtp_emp from "./pages/CheckOtp_emp";
 
 export const store = createContext();
-
-
-
-
 
 function App() {
   const [cartItems, setCartItems] = useState([]);
@@ -50,16 +48,15 @@ function App() {
   // const [empdetails, setempDetails] = useState({ email: "", password: "" });
   const [empdetails, setempDetails] = useState({});
   const [otpdetails, setOtpDetails] = useState({});
+  const [otpdetails_emp, setOtpDetails_emp] = useState({});
   
-
-
-  
-
 
   return (
     <div className="App">
       <store.Provider
         value={{
+          otpdetails_emp,
+          setOtpDetails_emp,
           otpdetails,
           setOtpDetails,
           cartItems,
@@ -112,6 +109,7 @@ function App() {
             <Route path="/ays/settings" element={<ProtectedRoute Component={Settings} />} />
             <Route path="/mainLogon" element={<LoginButton/>}/>
             <Route path="/empProfile" element={<EmpProtectedRoute Component={EmpProfile} />}/>
+            <Route path="/CheckOtp_emp" element={<OtpProtectedRoute_emp Component={CheckOtp_emp}/>}></Route>
             <Route path="/checkOTP" element={<OtpProtectedRoute Component={CheckOTP}/>}/>
             <Route path="*" element={<PageNotFound />} />
           </Routes>

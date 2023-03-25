@@ -1,13 +1,15 @@
-import React,{useState} from 'react'
+import React,{useState,useContext} from 'react'
 import { Link, useNavigate } from "react-router-dom";
 import MainNav from "../components/MainNav";
 import Builder from "./Images/builder.png";
+import {store} from "../App.js";
 import "./css/Register.css";
 import Axios from "axios";
 
 
 function Register() {
   const navigate = useNavigate();
+  const {otpdetails_emp,setOtpDetails_emp}= useContext(store);
   const [user, setUser] = useState({
     firstName: "",
     lastName: "",
@@ -44,19 +46,7 @@ function Register() {
     console.log("submit handler called")
     e.preventDefault();
     console.log(user);
-    const {
-      firstName,
-      lastName,
-      gender,
-      profession,
-      email,
-      phone,
-      address,
-      city,
-      state,
-      pincode,
-      password
-    } = user;
+    const { firstName,lastName,gender,profession, email,phone,address,city,state,pincode,password} = user;
 
     if (firstName === "") {
       setFirstNameMsg("First name is required!");
@@ -98,31 +88,33 @@ function Register() {
     }
    else {
           console.log("Employee entered data:",user)
-          Axios.post(`http://localhost:3001/empsignup`, {
-            firstName,
-            lastName,
-            gender,
-            profession,
-            email,
-            phone,
-            address,
-            city,  
-            state,
-            pincode,
-            password,
-            free:"1"
-          }).then((res) => {
-            console.log(res.data);
-            if(res.data!=null){
-              alert("We received your details. We will contact you soon!");
-              setUser({firstName:"",lastName:"",gender:"",profession:"",email:"",phone:"",address:"",city:"",state:"",pincode:"",password:""});
-              navigate("/");
-            }
-            else{
-              alert("Something went wrong! or Email already exists!");
-            }
+          setOtpDetails_emp(user)
+          navigate('/CheckOtp_emp')
+          // Axios.post(`http://localhost:3001/empsignup`, {
+          //   firstName,
+          //   lastName,
+          //   gender,
+          //   profession,
+          //   email,
+          //   phone,
+          //   address,
+          //   city,  
+          //   state,
+          //   pincode,
+          //   password,
+          //   free:"1"
+          // }).then((res) => {
+          //   console.log(res.data);
+          //   if(res.data!=null){
+          //     alert("We received your details. We will contact you soon!");
+          //     setUser({firstName:"",lastName:"",gender:"",profession:"",email:"",phone:"",address:"",city:"",state:"",pincode:"",password:""});
+          //     navigate("/");
+          //   }
+          //   else{
+          //     alert("Something went wrong! or Email already exists!");
+          //   }
               
-          });
+          // });
         } 
   }
   return (

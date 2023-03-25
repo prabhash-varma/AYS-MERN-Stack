@@ -14,7 +14,7 @@ function Work() {
      
   const getorderdetails = async () => {
     // const res = await Axios.get(`http://localhost:3001/orders?eemail=${empdetails.email}`);
-    const res = await Axios.get(`http://localhost:3001/getorders?eemail=${empdetails.email}`,{headers:{"x-access-token":localStorage.getItem("token")}});
+    const res = await Axios.get(`http://localhost:3001/getorders?eemail=${empdetails.email}`,{},{headers:{"authorization":`bearer ${localStorage.getItem("token")}`}});
 
     if(res.data.auth){
     console.log("details of orderws",res.data)

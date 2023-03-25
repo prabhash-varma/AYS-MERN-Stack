@@ -22,18 +22,21 @@ function Settings() {
     setImageurl("https://bootdey.com/img/Content/avatar/avatar7.png");
   
   // const imageurl = "https://bootdey.com/img/Content/avatar/avatar7.png";
-  const Change =async(inputimage)=> {
+  const Change = async (inputimage) => {
+    console.log(inputimage);
     const formData = new FormData();
     formData.append("file", inputimage);
-    formData.append("upload_preset", "ghyxgput");
-    formData.append("cloud_name", "dy27czstf");
-    await axios.post(
-      "https://api.cloudinary.com/v1_1/dy27czstf/image/upload", formData).then((response)=>
-      {
-        // axios.post(`http://localhost:3001/updateuserimg?id=${userdetails.email}`,{imgurl:response.data.secure_url})
-       setImageurl(response.data.secure_url);
-      })
-  }
+    formData.append("email", userdetails.email);
+    // axios.post(`http://localhost:3001/updateuserimg?id=${userdetails.email}`, {
+    // imgurl: response.data.secure_url,
+    // });
+    // setImageurl(response.data.secure_url);
+    axios.post(`http://localhost:3001/uploadimg`, formData,{headers:{"authorization":`bearer ${localStorage.getItem("token")}`}}).then((res) => {
+      console.log("Secure URL",res.data.secure_url);
+      setImageurl(res.data.secure_url);
+    });
+  };
+
 
   const [obj, setObj] = useState({
     firstname: userdetails.firstName,
@@ -102,18 +105,20 @@ function Settings() {
         state: obj.state,
         pincode: obj.pincode,
         imgurl:imageurl,
-      },{headers:{"x-access-token":localStorage.getItem("token")}})
+      },{headers:{"authorization":`bearer ${localStorage.getItem("token")}`}})
         .then((res) => {
-
+           console.log("i am print",res.data.auth)
           if(res.data.auth){
             toast.success("Profile updated successfully!",{position: toast.POSITION.BOTTOM_RIGHT});
             console.log(res.data.doc);
           }
           else{
+            console.log("dii")
             toast.error("Error updating profile!",{position: toast.POSITION.BOTTOM_RIGHT});
           }
         })
         .catch((err) => {
+          console.log("this the error",err);
           alert("Error updating profile!");
         });
     }

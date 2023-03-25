@@ -53,7 +53,8 @@ function Login() {
         console.log(res.data);
 
         if (res.data.auth === true) {
-          localStorage.setItem("token", res.data.token);
+            console.log("siddu",res.data.token)
+            localStorage.setItem("token", res.data.token);
           setUserDetails(res.data.users[0])
           alert("Login successful!");
           navigate("/ays/home");

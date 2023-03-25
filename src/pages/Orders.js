@@ -18,7 +18,7 @@ function Orders() {
   const navigate = useNavigate();
 
   const getorderdetails = async () => {
-    Axios.get(`http://localhost:3001/ordersbyuser?uemail=${userdetails.email}`,{headers:{"x-access-token":localStorage.getItem("token")}}).then((res)=>{
+    Axios.get(`http://localhost:3001/ordersbyuser?uemail=${userdetails.email}`,{},{headers:{"authorization":`bearer ${localStorage.getItem("token")}`}}).then((res)=>{
 
         if(res.data.auth==true){
           setorderitems(res.data.orders);
