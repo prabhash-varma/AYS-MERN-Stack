@@ -18,10 +18,11 @@ function Orders() {
   const navigate = useNavigate();
 
   const getorderdetails = async () => {
-    Axios.get(`http://localhost:3001/ordersbyuser?uemail=${userdetails.email}`,{},{headers:{"authorization":`bearer ${localStorage.getItem("token")}`}}).then((res)=>{
+    Axios.get(`http://localhost:3001/ordersbyuser?uemail=${userdetails.email}`,{headers:{"authorization":`bearer ${localStorage.getItem("token")}`}}).then((res)=>{
 
         if(res.data.auth==true){
           setorderitems(res.data.orders);
+          console.log(res.data.orders);
         }
         else{
           console.log("error in orders.js");

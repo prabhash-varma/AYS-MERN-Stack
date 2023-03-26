@@ -23,7 +23,7 @@
     background: rgb(238,174,202);
     background: linear-gradient(256deg, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 81%);
     /* background: #fff; */
-    position: fixed;
+    /* position: fixed; */
     bottom: 0;
     right: 0;
     left: 0;

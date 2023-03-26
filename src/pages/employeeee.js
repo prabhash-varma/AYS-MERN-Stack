@@ -11,7 +11,7 @@ function Work() {
   const navigate = useNavigate();
 
   const getorderdetails = async () => {
-   Axios.get(`http://localhost:3001/ordersbyemp?eemail=${empdetails.email}`,{},{headers:{"authorization":`bearer ${localStorage.getItem("token")}`}}).then((res)=>{
+   Axios.get(`http://localhost:3001/ordersbyemp?eemail=${empdetails.email}`,{headers:{"authorization":`bearer ${localStorage.getItem("token")}`}}).then((res)=>{
       
       if(res.data.auth==true){
         setOrderItems(res.data.orders[0]);
