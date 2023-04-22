@@ -193,7 +193,7 @@ const handleFileUpload = async (e) => {
                           </label>
                        {/* <input type="file" accept="Image/*" name="filetoupload" id="filetoupload" onChange={(e)=>{Change(e.target.files[0]);
         }}></input> */}
-                      <input type="file" accept="Image/*" name="filetoupload" lable="Image"  id='filetoupload' onChange={(e)=>{Change(e.target.files[0])}}/>
+                      <input type="file" accept="Image/*" name="filetoupload" id='filetoupload' onChange={(e)=>{Change(e.target.files[0])}}/>
                       </div>
                       <h5 style={{marginTop:"15px"}}id="user-name" className="user-name">
                         {userdetails.firstName}
