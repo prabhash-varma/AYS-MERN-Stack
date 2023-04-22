@@ -28,7 +28,7 @@ useEffect(() => {
     if(sentotp!="" && otpdetails_emp.email!=undefined){
         // console.log(" Your OTP",sentotp);
     console.log(form.current)
-    emailjs.sendForm('service_tdopmip', 'template_7jldubj', form.current, 'CKO63v3JYl6aHzdbV')
+    emailjs.sendForm(process.env.REACT_APP_EMP_EMAILJS_SERVICE, process.env.REACT_APP_EMP_EMAILJS_TEMPLATE, form.current, process.env.REACT_APP_EMP_EMAILJS_USERID)
       .then((result) => {                                                  
           console.log(result.text);
       }, (error) => {

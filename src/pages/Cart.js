@@ -81,8 +81,8 @@ function Cart() {
       for(var i =0;i< cartItems.length;i++)
       {
          const item = cartItems[i]
-         const res = await Axios.get(`http://localhost:3001/findemployee?profession=${item.type}&free=1`,{headers:{"authorization":`bearer ${localStorage.getItem("token")}`}})
-         const emp = res.data.employees[0]  
+         const res = await Axios.get(`http://localhost:3001/findemployee?profession=${item.type}&free=1&pincode=${orderItems.add_pincode}`,{headers:{"authorization":`bearer ${localStorage.getItem("token")}`}})
+         let emp = res.data.employees[0]  
         if(res.data.auth)
         {
           await Axios.post(`http://localhost:3001/updateemployee`, {...emp,free:0},{headers:{"authorization":`bearer ${localStorage.getItem("token")}`}})        

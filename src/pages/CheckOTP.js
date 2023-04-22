@@ -32,7 +32,7 @@ useEffect(() => {
     if(sentotp!="" && otpdetails.email!=undefined){
         // console.log(" Your OTP",sentotp);
     console.log(form.current)
-    emailjs.sendForm('service_3z7ta63', 'template_hc5zq3m', form.current, 'lERXfXjcjF38QjHJ3')
+    emailjs.sendForm(process.env.REACT_APP_USER_EMAILJS_SERVICE, process.env.REACT_APP_USER_EMAILJS_TEMPLATE, form.current, process.env.REACT_APP_USER_EMAILJS_USERID)
       .then((result) => {
           console.log(result.text);
       }, (error) => {
