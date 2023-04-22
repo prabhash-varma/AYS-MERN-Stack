@@ -22,6 +22,33 @@ function Settings() {
     setImageurl("https://bootdey.com/img/Content/avatar/avatar7.png");
   
   // const imageurl = "https://bootdey.com/img/Content/avatar/avatar7.png";
+
+
+const handleFileUpload = async (e) => {
+    const file = e.target.files[0];
+    const base64 = await convertToBase64(file);
+    setImageurl(base64);
+    Change(file);
+  };
+
+ 
+ const convertToBase64 = (file) => {
+    return new Promise((resolve, reject) => {
+      const fileReader = new FileReader();
+      fileReader.readAsDataURL(file);
+      
+      fileReader.onload = () => {
+        resolve(fileReader.result);
+      };
+
+      fileReader.onerror = (error) => {
+        reject(error);
+      };
+    });
+  };
+
+
+
   const Change = async (inputimage) => {
     console.log("Input Image",inputimage);
     const formData = new FormData();
@@ -32,10 +59,10 @@ function Settings() {
     // });
     // setImageurl(response.data.secure_url);
     console.log("Form Data",formData)
-    axios.post(`https://ays-mern-backend.vercel.app/uploadimg`, formData,{headers:{"authorization":`bearer ${localStorage.getItem("token")}`}}).then((res) => {
-      console.log("Secure URL",res.data.secure_url);
-      setImageurl(res.data.secure_url);
-    });
+    // axios.post(`https://ays-mern-backend.vercel.app/uploadimg`, formData,{headers:{"authorization":`bearer ${localStorage.getItem("token")}`}}).then((res) => {
+    //   console.log("Secure URL",res.data.secure_url);
+    //   setImageurl(res.data.secure_url);
+    // });
   };
 
 
@@ -158,8 +185,9 @@ function Settings() {
                       </div>
 
                           </label>
-                       <input type="file" accept="Image/*" name="filetoupload" id="filetoupload" onChange={(e)=>{Change(e.target.files[0]);
-        }}></input>
+                       {/* <input type="file" accept="Image/*" name="filetoupload" id="filetoupload" onChange={(e)=>{Change(e.target.files[0]);
+        }}></input> */}
+                      <input type="file" lable="Image" name="myFile" id='file-upload' accept='.jpeg, .png, .jpg' onChange={(e)=> handleFileUpload(e)}/>
                       </div>
                       <h5 style={{marginTop:"15px"}}id="user-name" className="user-name">
                         {userdetails.firstName}
