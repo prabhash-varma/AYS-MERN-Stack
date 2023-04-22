@@ -24,4 +24,3 @@ yarn-error.log*
 
 # Add .env files to .gitignore
 .env
-.env.*

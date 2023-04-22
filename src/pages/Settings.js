@@ -23,7 +23,7 @@ function Settings() {
   
   // const imageurl = "https://bootdey.com/img/Content/avatar/avatar7.png";
   const Change = async (inputimage) => {
-    console.log(inputimage);
+    console.log("Input Image",inputimage);
     const formData = new FormData();
     formData.append("file", inputimage);
     formData.append("email", userdetails.email);
@@ -31,6 +31,7 @@ function Settings() {
     // imgurl: response.data.secure_url,
     // });
     // setImageurl(response.data.secure_url);
+    console.log("Form Data",formData)
     axios.post(`https://ays-mern-backend.vercel.app/uploadimg`, formData,{headers:{"authorization":`bearer ${localStorage.getItem("token")}`}}).then((res) => {
       console.log("Secure URL",res.data.secure_url);
       setImageurl(res.data.secure_url);
