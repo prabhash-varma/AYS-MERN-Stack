@@ -22,5 +22,6 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-
+# Add .env files to .gitignore
 .env
+.env.*
