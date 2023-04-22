@@ -36,11 +36,9 @@ const handleFileUpload = async (e) => {
     return new Promise((resolve, reject) => {
       const fileReader = new FileReader();
       fileReader.readAsDataURL(file);
-      
       fileReader.onload = () => {
         resolve(fileReader.result);
       };
-
       fileReader.onerror = (error) => {
         reject(error);
       };
@@ -50,15 +48,23 @@ const handleFileUpload = async (e) => {
 
 
   const Change = async (inputimage) => {
-    console.log("Input Image",inputimage);
-    const formData = new FormData();
-    formData.append("file", inputimage);
-    formData.append("email", userdetails.email);
+
+    const base64 = await convertToBase64(inputimage);
+    setImageurl(base64);
+
+    // console.log("Input Image",inputimage);
+    // const formData = new FormData();
+    // formData.append("file", inputimage);
+    // formData.append("email", userdetails.email);
+
+
     // axios.post(`http://localhost:3001/updateuserimg?id=${userdetails.email}`, {
     // imgurl: response.data.secure_url,
     // });
     // setImageurl(response.data.secure_url);
-    console.log("Form Data",formData)
+
+
+    //console.log("Form Data",formData)
     // axios.post(`https://ays-mern-backend.vercel.app/uploadimg`, formData,{headers:{"authorization":`bearer ${localStorage.getItem("token")}`}}).then((res) => {
     //   console.log("Secure URL",res.data.secure_url);
     //   setImageurl(res.data.secure_url);
@@ -187,7 +193,7 @@ const handleFileUpload = async (e) => {
                           </label>
                        {/* <input type="file" accept="Image/*" name="filetoupload" id="filetoupload" onChange={(e)=>{Change(e.target.files[0]);
         }}></input> */}
-                      <input type="file" lable="Image" name="myFile" id='file-upload' accept='.jpeg, .png, .jpg' onChange={(e)=> handleFileUpload(e)}/>
+                      <input type="file" lable="Image" name="myFile" id='file-upload' accept='.jpeg, .png, .jpg' onChange={(e)=>{Change(e.target.files[0])}}/>
                       </div>
                       <h5 style={{marginTop:"15px"}}id="user-name" className="user-name">
                         {userdetails.firstName}
