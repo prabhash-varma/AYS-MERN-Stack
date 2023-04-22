@@ -90,7 +90,7 @@ function Register() {
           console.log("Employee entered data:",user)
           setOtpDetails_emp(user)
           navigate('/CheckOtp_emp')
-          // Axios.post(`http://localhost:3001/empsignup`, {
+          // Axios.post(`https://ays-mern-backend.vercel.app/empsignup`, {
           //   firstName,
           //   lastName,
           //   gender,

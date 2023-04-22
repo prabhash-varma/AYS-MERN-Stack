@@ -50,11 +50,11 @@ useEffect(() => {
     e.preventDefault();
     if(otp==sentotp){
         // alert("OTP verified");
-        Axios.get(`http://localhost:3001/checkemail?email=${otpdetails.email}`).then((res) => {
+        Axios.get(`https://ays-mern-backend.vercel.app/checkemail?email=${otpdetails.email}`).then((res) => {
         if (res.data.length === 0) {
             const { firstName, lastName, email, phone, address, city, state, pincode, password } = otpdetails;
 
-          Axios.post(`http://localhost:3001/signup`, {
+          Axios.post(`https://ays-mern-backend.vercel.app/signup`, {
             firstName,
             lastName,
             email,

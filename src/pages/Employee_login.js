@@ -44,7 +44,7 @@ function Employee_login() {
     } 
     else {
       Axios.get(
-        `http://localhost:3001/emplogin?email=${email}&password=${password}`
+        `https://ays-mern-backend.vercel.app/emplogin?email=${email}&password=${password}`
       ).then((res) => {
         console.log("emp details is :",res.data)
         if (res.data.auth === true) {

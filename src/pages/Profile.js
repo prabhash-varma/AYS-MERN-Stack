@@ -16,7 +16,7 @@ function Profile() {
   //   }
   //   else{
   //     console.log(userdetails);
-  //     Axios.get(`http://localhost:3001/users?email=${userdetails.email}`).then((res)=>{
+  //     Axios.get(`https://ays-mern-backend.vercel.app/users?email=${userdetails.email}`).then((res)=>{
   //       console.log(res.data);
   //       setProfileData(res.data[0]);
   //     })

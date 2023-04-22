@@ -31,7 +31,7 @@ function Settings() {
     // imgurl: response.data.secure_url,
     // });
     // setImageurl(response.data.secure_url);
-    axios.post(`http://localhost:3001/uploadimg`, formData,{headers:{"authorization":`bearer ${localStorage.getItem("token")}`}}).then((res) => {
+    axios.post(`https://ays-mern-backend.vercel.app/uploadimg`, formData,{headers:{"authorization":`bearer ${localStorage.getItem("token")}`}}).then((res) => {
       console.log("Secure URL",res.data.secure_url);
       setImageurl(res.data.secure_url);
     });
@@ -95,7 +95,7 @@ function Settings() {
         imgurl:imageurl,
       });
 
-      axios.post(`http://localhost:3001/updateuser`, {
+      axios.post(`https://ays-mern-backend.vercel.app/updateuser`, {
         firstName: obj.firstname,
         lastName: obj.lastname,
         email: obj.email,

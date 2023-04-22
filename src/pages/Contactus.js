@@ -29,7 +29,7 @@ function Contactus() {
       toast.error("Message is required",{position: toast.POSITION.BOTTOM_RIGHT})
     }
     else{
-    Axios.post("http://localhost:3001/messages",{...message},{headers:{"authorization":`bearer ${localStorage.getItem("token")}`}}).then((res)=>{
+    Axios.post("https://ays-mern-backend.vercel.app/messages",{...message},{headers:{"authorization":`bearer ${localStorage.getItem("token")}`}}).then((res)=>{
       console.log(res.data);
       if(res.data.auth){
         toast.success("Message sent successfully",{position: toast.POSITION.BOTTOM_RIGHT})

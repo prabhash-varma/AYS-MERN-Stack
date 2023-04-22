@@ -13,8 +13,8 @@ function Work() {
 // const [email,setemail]= useState({email:empdetails.email})
      
   const getorderdetails = async () => {
-    // const res = await Axios.get(`http://localhost:3001/orders?eemail=${empdetails.email}`);
-    const res = await Axios.get(`http://localhost:3001/getorders?eemail=${empdetails.email}`,{headers:{"authorization":`bearer ${localStorage.getItem("token")}`}});
+    // const res = await Axios.get(`https://ays-mern-backend.vercel.app/orders?eemail=${empdetails.email}`);
+    const res = await Axios.get(`https://ays-mern-backend.vercel.app/getorders?eemail=${empdetails.email}`,{headers:{"authorization":`bearer ${localStorage.getItem("token")}`}});
 
     if(res.data.auth){
     console.log("details of orderws",res.data)
@@ -33,9 +33,9 @@ function Work() {
 
   // const submithandler = async (e) => {
   //   e.preventDefault();
-  //   const res = await Axios.patch(`http://localhost:3001/orders/${orderitems.id}`,{ cost: amount, status: 1 });
+  //   const res = await Axios.patch(`https://ays-mern-backend.vercel.app/orders/${orderitems.id}`,{ cost: amount, status: 1 });
   //   const res1 = await Axios.patch(
-  //     `http://localhost:3001/employees/${orderitems.eid}`,
+  //     `https://ays-mern-backend.vercel.app/employees/${orderitems.eid}`,
   //     { free: 1 }
   //   );
   //   navigate("/Employee_home");
