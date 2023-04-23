@@ -86,13 +86,10 @@ function OrderDetails() {
        <h4>Technician phone number : {item.ephone}</h4>
        <h4>Technician email : {item.eemail}</h4>
        {item.cost!=0?
-       ( 
-       <>
+       (<div>
          <h3>Cost:{item.cost}</h3>
-       <button className='btn' style={{backgroundColor:'#6666FF',color:'white'}} onClick={()=> {displayRazorpay(item.cost)}}>Pay</button>
-       </>
-
-         )  
+       <button style={{backgroundColor:'#6666FF',color:'white'}} onClick={()=> {displayRazorpay(item.cost)}}>Pay</button>
+       </div>)  
        :<h3>Your Request is Still in progress</h3>}
        
        <div style={{display:"flex",justifyContent:"space-evenly"}}>
