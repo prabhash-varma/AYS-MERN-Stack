@@ -88,7 +88,7 @@ function OrderDetails() {
        {item.cost!=0?
        (<div>
          <h3>Cost:{item.cost}</h3>
-       <button style={{backgroundColor:'#6666FF',color:'white'}} onClick={()=> {displayRazorpay(item.cost)}}>Pay</button>
+       <button className='btn' style={{backgroundColor:'#6666FF',color:'white'}} onClick={()=> {displayRazorpay(item.cost)}}>Pay</button>
        </div>)  
        :<h3>Your Request is Still in progress</h3>}
        
