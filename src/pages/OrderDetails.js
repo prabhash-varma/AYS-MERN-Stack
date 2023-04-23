@@ -2,7 +2,7 @@ import React,{ useState, useContext} from 'react'
 import HomeNav from '../components/HomeNav.js'
 import {useParams,useNavigate} from 'react-router-dom'
 import {store} from '../App.js'
-import icon from './Images/icon.jpg'
+import icon from './Images/ays.jpg'
 import Axios from 'axios'
 import './css/OrdersDetails.css'
 
