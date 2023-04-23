@@ -1,16 +1,75 @@
 import React,{ useState, useContext} from 'react'
 import HomeNav from '../components/HomeNav.js'
-
 import {useParams,useNavigate} from 'react-router-dom'
 import {store} from '../App.js'
+import icon from './Images/icon.jpg'
+import Axios from 'axios'
 import './css/OrdersDetails.css'
 
+const  loadScript = (src)=> {
+  return new Promise((resolve) => {
+    const script = document.createElement('script')
+    script.src = src
+    script.onload = () => {
+      resolve(true)
+    }
+    script.onerror = () => {
+      resolve(false)
+    }
+    document.body.appendChild(script)
+  })
+}
+
+//const _DEV_ = document.domain === 'localhost'
+
 function OrderDetails() {
- const navigate = useNavigate();  
-  const {cartItems,setCartItems,userdetails,setUserDetails,orderslist,setOrderslist}  = useContext(store);
-  let {orderid} = useParams();
+  
+  const navigate = useNavigate();  
+   const {cartItems,setCartItems,userdetails,setUserDetails,orderslist,setOrderslist}  = useContext(store);
+   let {orderid} = useParams();
+   
+  const [name, setName] = useState('siddu')
+
+	const displayRazorpay = async(cost) =>{
+    const res = await loadScript('https://checkout.razorpay.com/v1/checkout.js')    
+      if (!res) {
+          alert('Razorpay SDK failed to load. Are you online?')
+           return
+         }
+      var data 
+     await Axios.post(`https://ays-mern-backend.vercel.app/razorpay`, {amount:cost})
+      .then((res) => {
+        console.log(res.data)
+        data = res.data
+      })
+
+		const options = {
+			key: process.env.REACT_APP_RAZORPAY_KEY_ID,
+			currency: data.currency,
+			amount: data.amount.toString(),
+			order_id: data.id ,
+			name: 'AYS',
+			description: 'Thank you for Choosing AYS.',
+			image: icon,
+			handler: function (response) {
+				alert(response.razorpay_payment_id)
+				alert(response.razorpay_order_id)
+				alert(response.razorpay_signature)
+			},
+			prefill: {
+				name,
+				email: 'siddu@gmail.com',
+				phone_number: '9014690041'
+			}
+		}
+		const paymentObject = new window.Razorpay(options)
+		paymentObject.open()
+	}
+
+
   
   const render = (item) =>{
+
     if(item.eemail != "")
    return(  
          <div style={{display: "flex",flexDirection: "row",justifyContent: "space-evenly"}}>
@@ -26,13 +85,19 @@ function OrderDetails() {
        <h4>Technician name : {item.efname} {item.elname}</h4>
        <h4>Technician phone number : {item.ephone}</h4>
        <h4>Technician email : {item.eemail}</h4>
-       {item.cost!=0? <h3>Cost:{item.cost}</h3> :<h3>Your Request is Still in progress</h3>}
+       {item.cost!=0?
+       ( 
+       <>
+         <h3>Cost:{item.cost}</h3>
+       <button className='btn' style={{backgroundColor:'#6666FF',color:'white'}} onClick={()=> {displayRazorpay(item.cost)}}>Pay</button>
+       </>
+
+         )  
+       :<h3>Your Request is Still in progress</h3>}
+       
        <div style={{display:"flex",justifyContent:"space-evenly"}}>
          <div style={{marginRight:"20px"}}>
-          <button type="button" class="btn btn-success" onClick={()=>{ navigate('/ays/contactus')}} style={{marginTop:"20px"}}>Need Help?</button>
-         </div>
-         <div >
-          {/* <button type="button" class="btn btn-danger" style={{marginTop:"20px"}}>Cancel Order</button> */}
+          <button className ='btn' style={{backgroundColor:'#ffB52E',color:'white',marginTop:"20px"}} onClick={()=>{ navigate('/ays/contactus')}} >Need Help?</button>
          </div>
        </div>
        </div>
@@ -68,6 +133,7 @@ function OrderDetails() {
   }
 
 
+
   return (
     <div>
        <HomeNav/>
@@ -97,4 +163,4 @@ function OrderDetails() {
   )
 }
 
-export default OrderDetails
+export default OrderDetails
