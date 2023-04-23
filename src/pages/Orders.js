@@ -22,7 +22,7 @@ function Orders() {
 
         if(res.data.auth==true){
           setorderitems(res.data.orders);
-          console.log(res.data.orders);
+          console.log("Order details",res.data);
         }
         else{
           console.log("error in orders.js");
