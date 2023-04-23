@@ -18,6 +18,7 @@ function Orders() {
   const navigate = useNavigate();
 
   const getorderdetails = async () => {
+    //https://ays-mern-backend.vercel.app
     Axios.get(`https://ays-mern-backend.vercel.app/ordersbyuser?uemail=${userdetails.email}`,{headers:{"authorization":`bearer ${localStorage.getItem("token")}`}}).then((res)=>{
 
         if(res.data.auth==true){
