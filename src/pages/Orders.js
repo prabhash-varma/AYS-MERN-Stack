@@ -85,7 +85,7 @@ function Orders() {
                         <button class="btn btn-success">Completed</button>
                       ) : (
                           item.eemail == "" ?(
-<button class="btn btn-danger">Canceled</button>
+<button class="btn btn-danger">Cancelled</button>
  ):(<>                         
   <button class="btn" style={{backgroundColor:"orange",color:"white"}}>Pending...</button>
                           </>)
