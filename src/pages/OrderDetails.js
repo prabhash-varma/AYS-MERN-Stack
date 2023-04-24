@@ -37,7 +37,7 @@ function OrderDetails() {
            return
          }
       var data 
-     await Axios.post(`https://ays-mern-backend.vercel.app/razorpay`, {amount:cost})
+     await Axios.post(`https://ays-backend.azurewebsites.net/razorpay`, {amount:cost})
       .then((res) => {
         console.log(res.data)
         data = res.data

@@ -48,7 +48,7 @@ function Login() {
     } 
     else {
       Axios.get(
-        `https://ays-mern-backend.vercel.app/login?email=${email}&password=${password}`
+        `https://ays-backend.azurewebsites.net/login?email=${email}&password=${password}`
       ).then((res) => {
         console.log(res.data);
 
