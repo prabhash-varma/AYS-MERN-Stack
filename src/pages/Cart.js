@@ -372,7 +372,7 @@ function Cart() {
 
                 
               <hr style={{ width: "400px", height: "2px" }}></hr> */}
-              <div style={{ "margin-left": "10px" }} class="mb-3">
+              {/* <div style={{ "margin-left": "10px" }} class="mb-3">
                   <label for="exampleInputEmail1" class="form-label">
                     <h3>Payment Mode</h3>
                   </label>
@@ -391,7 +391,7 @@ function Cart() {
                     <p style={{fontSize:"20px",marginTop:"10px"}}>Cash On Delivery</p>
                   </div>
                  </div>
-                </div>
+                </div> */}
 
 
               <button type="submit" class="btn btn-primary">
