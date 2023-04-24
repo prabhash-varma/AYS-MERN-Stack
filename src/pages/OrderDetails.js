@@ -74,26 +74,29 @@ function OrderDetails() {
    return(  
          <div style={{display: "flex",flexDirection: "row",justifyContent: "space-evenly"}}>
          <div style={{display: "flex", flexDirection: "column","justify-content":"center",alignItems: "flex-start"}}>
-        <h4>Ordered Service : {item.iname}</h4>                        
-       <h4>Email: {item.ord_email}</h4>
-       <h4>Phone: {item.ord_phone}</h4>                        
-       <h2 style={{marginTop:"20px"}}>Address:</h2>
-       <h5>{item.ord_address1},</h5>                        
-       <h5>{item.ord_address2},</h5>                                               
-       <h5>{item.ord_state},</h5>
-       <h5>{item.ord_pincode},</h5>  
-       <h4>Technician name : {item.efname} {item.elname}</h4>
-       <h4>Technician phone number : {item.ephone}</h4>
-       <h4>Technician email : {item.eemail}</h4>
+
+         <h2 style={{marginTop:"20px"}}><u>Order Details:</u></h2>
+        <h6>Ordered Service : {item.iname}</h6>                        
+       <h6>Email: {item.ord_email}</h6>
+       <h6>Phone: {item.ord_phone}</h6>                        
+       <h2 style={{marginTop:"20px"}}><u>Address:</u></h2>
+       <h6>{item.ord_address1},</h6>                        
+       <h6>{item.ord_address2},</h6>                                               
+       <h6>{item.ord_state},</h6>
+       <h6>{item.ord_pincode}.</h6>  
+       <h2 style={{marginTop:"20px"}}><u>Technician Details:</u></h2>
+       <h6>Technician name : {item.efname} {item.elname}</h6>
+       <h6>Technician phone number : {item.ephone}</h6>
+       <h6 style={{marginBottom:"50px"}}>Technician email : {item.eemail}</h6>
        {item.cost!=0?
        (<div>
-         <h3>Cost:{item.cost}</h3>
-       <button className='btn' style={{backgroundColor:'#6666FF',color:'white'}} onClick={()=> {displayRazorpay(item.cost)}}>Pay</button>
+         <h2 style={{marginBottom:"20px"}}>Cost(₹):{item.cost}</h2>
+       <button className='btn' style={{backgroundColor:'#6666FF',color:'white',width:'140px'}} onClick={()=> {displayRazorpay(item.cost)}}>Pay Online</button>
        </div>)  
        :<h3>Your Request is Still in progress</h3>}
        
        <div style={{display:"flex",justifyContent:"space-evenly"}}>
-         <div style={{marginRight:"20px"}}>
+         <div style={{marginRight:"20px",marginTop:"50px"}}>
           <button className ='btn' style={{backgroundColor:'#ffB52E',color:'white',marginTop:"20px"}} onClick={()=>{ navigate('/ays/contactus')}} >Need Help?</button>
          </div>
        </div>
@@ -123,7 +126,7 @@ function OrderDetails() {
        </div>
        </div>
        <div className="orders-details" style={{display: 'flex',flexDirection:"column",justifyContent: 'center',alignItems: 'center'}}>
-       <img style={{width:"300px",height:"200px",marginBottom:"10px"}} src={item.iimg}/>       
+       <img style={{width:"300px",height:"200px",marginBottom:"10px",border:"2px solid black"}} src={item.iimg}/>       
     </div>
    </div>
 )
