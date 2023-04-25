@@ -78,7 +78,20 @@ function Signup() {
 
       console.log(otpdetails);
 
-      navigate("/checkotp");
+
+      Axios.get(`https://ays-backend.azurewebsites.net/checkemail?email=${otpdetails.email}`).then((res) => {
+        if (res.data.length === 0) {
+          navigate("/checkotp");
+        } else {
+          //setEmailMsg("Email already exists!");
+          toast.error("Email already exists!",{position: toast.POSITION.BOTTOM_RIGHT})
+        }
+      });
+
+
+
+
+      
 
 
 
