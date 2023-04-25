@@ -42,6 +42,7 @@ function Orders() {
     if (userdetails.length === 0) {
       navigate("/ays/login");
     }
+    console.log("useEffect called")
     getorderdetails();
   }, [userdetails,orderitems.length]);
 

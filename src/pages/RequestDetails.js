@@ -59,15 +59,17 @@ function RequestDetails() {
                    <div style={{display: "flex",flexDirection: "row",justifyContent: "space-evenly"}}>
          <div style={{display: "flex", flexDirection: "column","justify-content":"center",alignItems: "flex-start"}}>
        
-                  <h4>Requested service :{item.iname}</h4>
-                  <h1>Customer details :- </h1>
-                  <h4>Email: {item.ord_email}</h4>
-                  <h4>Phone: {item.ord_phone}</h4>                        
-                  <h3 style={{marginTop:"20px"}}>Address:</h3>
+                  <h3><u>Requested service:</u></h3>
+                  <h5>{item.iname}</h5>
+                 
+                  <h3 style={{marginTop:"20px"}}><u>Customer details:</u></h3>
+                  <h5>Email: {item.ord_email}</h5>
+                  <h5>Phone: {item.ord_phone}</h5>                        
+                  <h3 style={{marginTop:"20px"}}><u>Address:</u></h3>
                   <h5>{item.ord_address1},</h5>                        
                   <h5>{item.ord_address2},</h5>                                               
                  <h5>{item.ord_state},</h5>
-                <h5>{item.ord_pincode},</h5> 
+                <h5>{item.ord_pincode}.</h5> 
 
                 <div style={{display:"flex",justifyContent:"space-evenly"}}>
           <div style={{marginRight:"20px"}}>
@@ -93,8 +95,8 @@ function RequestDetails() {
                       </button>
                     </form>
                   ) : (<>
-                      <h4>Cost : {item.cost}</h4>
-                      <h4 style={{color:"Darkgreen"}}>Satus:Completed</h4>
+                      <h2 style={{marginTop:"30px"}}>Cost(₹) : {item.cost}</h2>
+                      <h5 style={{color:"Darkgreen"}}>Satus: Completed</h5>
                   </>
                
                   )}
