@@ -80,6 +80,7 @@ function Signup() {
 
 
       Axios.get(`https://ays-backend.azurewebsites.net/checkemail?email=${otpdetails.email}`).then((res) => {
+        console.log(res);
         if (res.data.length === 0) {
           navigate("/checkotp");
         } else {
