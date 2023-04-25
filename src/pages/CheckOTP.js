@@ -49,10 +49,8 @@ useEffect(() => {
   const submitHandler = (e)=>{
     e.preventDefault();
     if(otp==sentotp){
-        // alert("OTP verified");
-        Axios.get(`https://ays-backend.azurewebsites.net/checkemail?email=${otpdetails.email}`).then((res) => {
-        if (res.data.length === 0) {
-            const { firstName, lastName, email, phone, address, city, state, pincode, password } = otpdetails;
+  
+          const { firstName, lastName, email, phone, address, city, state, pincode, password } = otpdetails;
 
           Axios.post(`https://ays-backend.azurewebsites.net/signup`, {
             firstName,
@@ -73,14 +71,6 @@ useEffect(() => {
               alert("Something went wrong");
             }
           });
-        } else {
-          //setEmailMsg("Email already exists!");
-          toast.error("Email already exists!",{position: toast.POSITION.BOTTOM_RIGHT})
-        }
-      });
-
-
-        
     }
     else{
         alert("OTP not verified");
