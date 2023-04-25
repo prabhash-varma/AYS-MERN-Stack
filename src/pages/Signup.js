@@ -41,7 +41,7 @@ function Signup() {
     setUser({ ...user, [name]: value });
   };
 
-  const submitHandler = (e) => {
+  const submitHandler =async (e) => {
     e.preventDefault();
     console.log(user);
     const {
@@ -78,8 +78,8 @@ function Signup() {
 
       console.log(otpdetails);
 
-
-      Axios.get(`https://ays-backend.azurewebsites.net/checkemail?email=${otpdetails.email}`).then((res) => {
+      //https://ays-backend.azurewebsites.net
+      await Axios.get(`http://localhost:3001/checkemail?email=${user.email}`).then((res) => {
         console.log(res);
         if (res.data.length === 0) {
           navigate("/checkotp");
