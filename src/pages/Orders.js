@@ -43,7 +43,7 @@ function Orders() {
       navigate("/ays/login");
     }
     getorderdetails();
-  }, [userdetails,orderitems]);
+  }, [userdetails,orderitems.length]);
 
   return (
     <div>
