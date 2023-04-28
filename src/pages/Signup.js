@@ -79,7 +79,7 @@ function Signup() {
       console.log(otpdetails);
 
       //https://ays-backend.azurewebsites.net
-      await Axios.get(`http://localhost:3001/checkemail?email=${user.email}`).then((res) => {
+      await Axios.get(`https://ays-backend.azurewebsites.net/checkemail?email=${user.email}`).then((res) => {
         console.log(res);
         if (res.data.length === 0) {
           navigate("/checkotp");
