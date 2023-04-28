@@ -129,7 +129,7 @@ const handleFileUpload = async (e) => {
         imgurl:imageurl,
       });
 
-      axios.post(`https://ays-backend.azurewebsites.net/updateuser`, {
+      axios.post(`https://ays-mern-backend.vercel.app/updateuser`, {
         firstName: obj.firstname,
         lastName: obj.lastname,
         email: obj.email,

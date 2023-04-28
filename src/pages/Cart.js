@@ -81,15 +81,15 @@ function Cart() {
       for(var i =0;i< cartItems.length;i++)
       {
          const item = cartItems[i]
-         const res = await Axios.get(`https://ays-backend.azurewebsites.net/findemployee?profession=${item.type}&free=1&pincode=${orderItems.add_pincode}`,{headers:{"authorization":`bearer ${localStorage.getItem("token")}`}})
+         const res = await Axios.get(`https://ays-mern-backend.vercel.app/findemployee?profession=${item.type}&free=1&pincode=${orderItems.add_pincode}`,{headers:{"authorization":`bearer ${localStorage.getItem("token")}`}})
          let emp = res.data.employees[0]  
         if(res.data.auth)
         {
-          await Axios.post(`https://ays-backend.azurewebsites.net/updateemployee`, {...emp,free:0},{headers:{"authorization":`bearer ${localStorage.getItem("token")}`}})        
-          await Axios.post(`https://ays-backend.azurewebsites.net/orders`, {status:0,iname:item.name,iimg:item.img,itype:item.type,ufname:userdetails.firstName,ulname:userdetails.lastName,uemail:userdetails.email,uphone:userdetails.phone,eid:emp.id,efname:emp.firstName,elname:emp.lastName,eemail:emp.email,ephone:emp.phone,eprofession:emp.eprofession,ord_name:orderItems.add_name,ord_email:orderItems.add_email,ord_phone:orderItems.add_phone,ord_address1:orderItems.add_address1,ord_address2:orderItems.add_address2,ord_state:orderItems.add_state,ord_pincode:orderItems.add_pincode,ord_date:orderItems.add_date},{headers:{"authorization":`bearer ${localStorage.getItem("token")}`}})
+          await Axios.post(`https://ays-mern-backend.vercel.app/updateemployee`, {...emp,free:0},{headers:{"authorization":`bearer ${localStorage.getItem("token")}`}})        
+          await Axios.post(`https://ays-mern-backend.vercel.app/orders`, {status:0,iname:item.name,iimg:item.img,itype:item.type,ufname:userdetails.firstName,ulname:userdetails.lastName,uemail:userdetails.email,uphone:userdetails.phone,eid:emp.id,efname:emp.firstName,elname:emp.lastName,eemail:emp.email,ephone:emp.phone,eprofession:emp.eprofession,ord_name:orderItems.add_name,ord_email:orderItems.add_email,ord_phone:orderItems.add_phone,ord_address1:orderItems.add_address1,ord_address2:orderItems.add_address2,ord_state:orderItems.add_state,ord_pincode:orderItems.add_pincode,ord_date:orderItems.add_date},{headers:{"authorization":`bearer ${localStorage.getItem("token")}`}})
         }
         else{
-        await Axios.post(`https://ays-backend.azurewebsites.net/orders`, {status:0,iname:item.name,iimg:item.img,itype:item.type,ufname:userdetails.firstName,ulname:userdetails.lastName,uemail:userdetails.email,uphone:userdetails.phone,eemail:"",ord_name:orderItems.add_name,ord_email:orderItems.add_email,ord_phone:orderItems.add_phone,ord_address1:orderItems.add_address1,ord_address2:orderItems.add_address2,ord_state:orderItems.add_state,ord_pincode:orderItems.add_pincode,ord_date:orderItems.add_date},{headers:{"authorization":`bearer ${localStorage.getItem("token")}`}})
+        await Axios.post(`https://ays-mern-backend.vercel.app/orders`, {status:0,iname:item.name,iimg:item.img,itype:item.type,ufname:userdetails.firstName,ulname:userdetails.lastName,uemail:userdetails.email,uphone:userdetails.phone,eemail:"",ord_name:orderItems.add_name,ord_email:orderItems.add_email,ord_phone:orderItems.add_phone,ord_address1:orderItems.add_address1,ord_address2:orderItems.add_address2,ord_state:orderItems.add_state,ord_pincode:orderItems.add_pincode,ord_date:orderItems.add_date},{headers:{"authorization":`bearer ${localStorage.getItem("token")}`}})
       }
       }
     }

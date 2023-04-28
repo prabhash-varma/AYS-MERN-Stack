@@ -78,8 +78,8 @@ function Signup() {
 
       console.log(otpdetails);
 
-      //https://ays-backend.azurewebsites.net
-      await Axios.get(`https://ays-backend.azurewebsites.net/checkemail?email=${user.email}`).then((res) => {
+      //https://ays-mern-backend.vercel.app
+      await Axios.get(`https://ays-mern-backend.vercel.app/checkemail?email=${user.email}`).then((res) => {
         console.log(res);
         if (res.data.length === 0) {
           navigate("/checkotp");

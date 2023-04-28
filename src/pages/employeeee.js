@@ -11,7 +11,7 @@ function Work() {
   const navigate = useNavigate();
 
   const getorderdetails = async () => {
-   Axios.get(`https://ays-backend.azurewebsites.net/ordersbyemp?eemail=${empdetails.email}`,{headers:{"authorization":`bearer ${localStorage.getItem("token")}`}}).then((res)=>{
+   Axios.get(`https://ays-mern-backend.vercel.app/ordersbyemp?eemail=${empdetails.email}`,{headers:{"authorization":`bearer ${localStorage.getItem("token")}`}}).then((res)=>{
       
       if(res.data.auth==true){
         setOrderItems(res.data.orders[0]);
@@ -26,11 +26,11 @@ function Work() {
   const submithandler = async (e) => {
     e.preventDefault();
     const res = await Axios.post(
-      `https://ays-backend.azurewebsites.net/updateorder`,{orderid :orderitems._id,cost: amount, status: 1},{headers:{"authorization":`bearer ${localStorage.getItem("token")}`}}
+      `https://ays-mern-backend.vercel.app/updateorder`,{orderid :orderitems._id,cost: amount, status: 1},{headers:{"authorization":`bearer ${localStorage.getItem("token")}`}}
 
     );
     const res1 = await Axios.post(
-      `https://ays-backend.azurewebsites.net/updateemployeebyemail`,{email:orderitems.eemail,free:1},{headers:{"authorization":`bearer ${localStorage.getItem("token")}`}}
+      `https://ays-mern-backend.vercel.app/updateemployeebyemail`,{email:orderitems.eemail,free:1},{headers:{"authorization":`bearer ${localStorage.getItem("token")}`}}
     );
     navigate("/Employee_home");
   };
