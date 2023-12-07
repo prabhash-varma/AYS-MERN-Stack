@@ -65,7 +65,7 @@ const handleFileUpload = async (e) => {
 
 
     //console.log("Form Data",formData)
-    // axios.post(`https://ays-mern-backend.vercel.app/uploadimg`, formData,{headers:{"authorization":`bearer ${localStorage.getItem("token")}`}}).then((res) => {
+    // axios.post(`https://ays-mern-backend.onrender.com/uploadimg`, formData,{headers:{"authorization":`bearer ${localStorage.getItem("token")}`}}).then((res) => {
     //   console.log("Secure URL",res.data.secure_url);
     //   setImageurl(res.data.secure_url);
     // });
@@ -129,7 +129,7 @@ const handleFileUpload = async (e) => {
         imgurl:imageurl,
       });
 
-      axios.post(`https://ays-mern-backend.vercel.app/updateuser`, {
+      axios.post(`https://ays-mern-backend.onrender.com/updateuser`, {
         firstName: obj.firstname,
         lastName: obj.lastname,
         email: obj.email,

@@ -14,7 +14,7 @@ function Work() {
      
   const getorderdetails = async () => {
     // const res = await Axios.get(`https://ays-mern-backend.vercel.app/orders?eemail=${empdetails.email}`);
-    const res = await Axios.get(`https://ays-mern-backend.vercel.app/getorders?eemail=${empdetails.email}`,{headers:{"authorization":`bearer ${localStorage.getItem("token")}`}});
+    const res = await Axios.get(`https://ays-mern-backend.onrender.com/getorders?eemail=${empdetails.email}`,{headers:{"authorization":`bearer ${localStorage.getItem("token")}`}});
 
     if(res.data.auth){
     console.log("details of orderws",res.data)

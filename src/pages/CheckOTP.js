@@ -52,7 +52,7 @@ useEffect(() => {
   
           const { firstName, lastName, email, phone, address, city, state, pincode, password } = otpdetails;
 
-          Axios.post(`https://ays-mern-backend.vercel.app/signup`, {
+          Axios.post(`https://ays-mern-backend.onrender.com/signup`, {
             firstName,
             lastName,
             email,
