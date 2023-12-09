@@ -36,7 +36,10 @@ function About() {
         professionals who are closest to the users’ requirements and available
         at the requested time and date.
       </p>
-      <div className="container">
+
+
+
+      {/* <div className="container">
         <div className="row text-center">
           <div className="col-xl-3 col-sm-6 mb-5">
             <div className="bg-white rounded shadow-sm py-5 px-4">
@@ -184,7 +187,7 @@ function About() {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
       <h4>"With great power comes great responsibility"</h4>
       <Footer />
     </div>
