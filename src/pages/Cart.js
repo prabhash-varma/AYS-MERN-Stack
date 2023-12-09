@@ -85,10 +85,13 @@ function Cart() {
          let emp = res.data.employees[0]  
         if(res.data.auth)
         {
+          console.log("inside if");
+          console.log(orderItems);
           await Axios.post(`https://ays-mern-backend.onrender.com/updateemployee`, {...emp,free:0},{headers:{"authorization":`bearer ${localStorage.getItem("token")}`}})        
           await Axios.post(`https://ays-mern-backend.onrender.com/orders`, {status:0,iname:item.name,iimg:item.img,itype:item.type,ufname:userdetails.firstName,ulname:userdetails.lastName,uemail:userdetails.email,uphone:userdetails.phone,eid:emp.id,efname:emp.firstName,elname:emp.lastName,eemail:emp.email,ephone:emp.phone,eprofession:emp.eprofession,ord_name:orderItems.add_name,ord_email:orderItems.add_email,ord_phone:orderItems.add_phone,ord_address1:orderItems.add_address1,ord_address2:orderItems.add_address2,ord_state:orderItems.add_state,ord_pincode:orderItems.add_pincode,ord_date:orderItems.add_date},{headers:{"authorization":`bearer ${localStorage.getItem("token")}`}})
         }
         else{
+          console.log("inside else")
         await Axios.post(`https://ays-mern-backend.onrender.com/orders`, {status:0,iname:item.name,iimg:item.img,itype:item.type,ufname:userdetails.firstName,ulname:userdetails.lastName,uemail:userdetails.email,uphone:userdetails.phone,eemail:"",ord_name:orderItems.add_name,ord_email:orderItems.add_email,ord_phone:orderItems.add_phone,ord_address1:orderItems.add_address1,ord_address2:orderItems.add_address2,ord_state:orderItems.add_state,ord_pincode:orderItems.add_pincode,ord_date:orderItems.add_date},{headers:{"authorization":`bearer ${localStorage.getItem("token")}`}})
       }
       }
